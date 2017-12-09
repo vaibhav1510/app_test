@@ -1,30 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.models.Customer"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>Add New Customer</h1>
-<form class="cf">
-  <div class="half left cf">
-    <input type="text" id="input-name" placeholder="Name">
-    <input type="email" id="input-email" placeholder="Email address">
+	<h1>Test App</h1>
+	<a href="customer/add.jsp">Add New Customer</a>	
+	<div class="main">
+		<div class="half right cf">
+			<a href="customer/add.jsp">Add New Customer</a>
+		</div>
+		<div class="half left cf">
+			<a>Search Customer</a>
+		</div>
 
-    <input type="text" id="input-phone" placeholder="Phone">
-  </div>
-  <div class="half right cf">
-    <h2>Address</h2>
-    <!--textarea name="message" type="text" id="input-message" placeholder="Message"></textarea-->
-    <input type="text" id="input-city" placeholder="City">
-        <input type="text" id="input-state" placeholder="State">
-        <input type="text" id="input-country" placeholder="Country">
-        <input type="text" id="input-pincode" placeholder="Pincode">
-  </div>  
-  <input type="submit" value="Submit" id="input-submit">
-</form>
+		<div class="table">
+			<ul>			
+				<c:forEach var="cust"  items="${listCusts}">
+				<li>${cust.name} (${cust.email}) <a href="view_customer?cust_id=${cust.id}">View</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

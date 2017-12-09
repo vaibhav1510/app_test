@@ -13,7 +13,7 @@ public class Address {
 	private String country;
 	private String pincode;
 
-	public Long id() {
+	public Long getId() {
 		return id;
 	}
 
@@ -22,7 +22,7 @@ public class Address {
 		return this;
 	}
 
-	public String city() {
+	public String getCity() {
 		return city;
 	}
 
@@ -31,7 +31,7 @@ public class Address {
 		return this;
 	}
 
-	public String state() {
+	public String getState() {
 		return state;
 	}
 
@@ -40,7 +40,7 @@ public class Address {
 		return this;
 	}
 
-	public String country() {
+	public String getCountry() {
 		return country;
 	}
 
@@ -49,7 +49,7 @@ public class Address {
 		return this;
 	}
 
-	public String pincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
@@ -58,32 +58,45 @@ public class Address {
 		return this;
 	}
 
-	public static Boolean initAddresses(Customer u) throws Exception {
+	public static Boolean initAddresses(Customer cust) throws Exception {
 		List<Address> toRet = new ArrayList<Address>();
-		String sql = "select * from addresses where customer_id=" + u.id();
+		String sql = "select * from addresses where customer_id=" + cust.getId();
 		DbExecutor exec = DbExecutor.init();
 		ResultSet rs = exec.select(sql);
 
-		Address uw = new Address().id(rs.getLong("id")).city(rs.getString("city")).state(rs.getString("state"))
-				.country(rs.getString("country")).pincode(rs.getString("pincode"));
-		toRet.add(uw);
-		u.initAddresses(toRet);
+		while (rs.next()) {
+			Address uw = new Address().id(rs.getLong("id")) //
+					.city(rs.getString("city")) //
+					.state(rs.getString("state")) //
+					.country(rs.getString("country")) //
+					.pincode(rs.getString("pincode"));
+			toRet.add(uw);
+		}
+		cust.initAddresses(toRet);
 		exec.close();
 		return true;
 	}
 
-	public void dbInsert() throws Exception {
-		String sql = new StringBuilder().append("insert into addresses set ").append("city='").append(city).append("',")
-				.append("state='").append(state).append("',").append("country='").append(country).append("',")
-				.append("pincode='").append(pincode).append("'").toString();
+	public void dbInsert(Customer cust) throws Exception {
+		String sql = new StringBuilder().append("insert into addresses set ") //
+				.append("customer_id='").append(cust.getId()).append("',") //
+				.append("city='").append(city).append("',") //
+				.append("state='").append(state).append("',") //
+				.append("country='").append(country).append("',") //
+				.append("pincode='").append(pincode).append("'") //
+				.toString();
 		DbExecutor exec = DbExecutor.init();
 		exec.update(sql);
+		initAddresses(cust);
 	}
 
 	public void dbUpdate() throws Exception {
-		String sql = new StringBuilder().append("update addresses set ").append("city='").append(city).append("',")
-				.append("state='").append(state).append("',").append("country='").append(country).append("',")
-				.append("pincode='").append(pincode).append("'").append(" where id=").append(id).toString();
+		String sql = new StringBuilder().append("update addresses set ") //
+				.append("city='").append(city).append("',") //
+				.append("state='").append(state).append("',") //
+				.append("country='").append(country).append("',") //
+				.append("pincode='").append(pincode).append("'") //
+				.append(" where id=").append(id).toString();
 		DbExecutor exec = DbExecutor.init();
 		exec.update(sql);
 	}

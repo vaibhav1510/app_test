@@ -1,7 +1,7 @@
 package com.actions;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,29 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.models.Address;
 import com.models.Customer;
 
-@WebServlet(name = "/AddCustomer", urlPatterns = "/add_customer")
-public class AddCustomerAction extends HttpServlet {
+@WebServlet(name = "/ListCustomer", urlPatterns = "/list_customer")
+public class ListCustomerAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AddCustomerAction() {
+	public ListCustomerAction() {
 		super();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			Customer c = new Customer().email(request.getParameter("email")).phone(request.getParameter("phone"))
-					.name(request.getParameter("name"));
-
-			Address addr = new Address().city(request.getParameter("city")).state(request.getParameter("state"))
-					.country(request.getParameter("country")).pincode(request.getParameter("pincode"));
-
-			c.initAddresses(Arrays.asList(addr));
-			c.dbInsert();
-			response.sendRedirect("view_customer?cust_id=" + c.getId());
+			List<Customer> listCusts = Customer.getAll();			
+			request.setAttribute("listCusts", listCusts);			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,5 +39,4 @@ public class AddCustomerAction extends HttpServlet {
 			throws ServletException, IOException {
 		service(request, response);
 	}
-
 }

@@ -12,26 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.models.Address;
 import com.models.Customer;
 
-@WebServlet(name = "/AddCustomer", urlPatterns = "/add_customer")
-public class AddCustomerAction extends HttpServlet {
+@WebServlet(name = "/ViewCustomer", urlPatterns = "/view_customer")
+public class ViewCustomerAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AddCustomerAction() {
+	public ViewCustomerAction() {
 		super();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			Customer c = new Customer().email(request.getParameter("email")).phone(request.getParameter("phone"))
-					.name(request.getParameter("name"));
-
-			Address addr = new Address().city(request.getParameter("city")).state(request.getParameter("state"))
-					.country(request.getParameter("country")).pincode(request.getParameter("pincode"));
-
-			c.initAddresses(Arrays.asList(addr));
-			c.dbInsert();
-			response.sendRedirect("view_customer?cust_id=" + c.getId());
+			Customer cust = Customer.getCustomer(Long.parseLong(request.getParameter("cust_id")));
+			request.setAttribute("cust", cust);			
+			request.getRequestDispatcher("customer/view.jsp").forward(request, response);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -32,7 +32,7 @@ public class DbExecutor {
 		System.out.println("LOG >>> " + sql);
 		stmt = conn.createStatement();
 		int count = stmt.executeUpdate(sql);
-		close(null);
+		close();
 		return count;
 	}
 
