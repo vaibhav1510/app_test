@@ -18,44 +18,50 @@ main {
 	max-width: 600px;
 	text-align: center;
 	margin: 20px auto;
-	color: #5d5d5d;	
+	color: #5d5d5d;
 	text-shadow: 1px 1px 0 white;
 }
 
 h1 {
 	text-align: center;
 	font-weight: bold;
-	color: #5d5d5d;	
+	color: #5d5d5d;
 	text-shadow: 1px 1px 0 white;
 }
 
 h2 {
 	padding: 2px;
-  	font-size: 15px;
-   text-align: left;
-   color: #a8a8a8;   
-   @include text-shadow(1px 1px 0 rgba(white, 1));
+	font-size: 15px;
+	text-align: left;
+	color: #a8a8a8;
 }
+
 a {
 	font-size: 12px;
-   text-align: left;
-   color: #d9483a;
-   @include text-shadow(1px 1px 0 rgba(white, 1));	
+	text-align: left;
+	color: #d9483a;
+	text-decoration: none;
+	/* @include text-shadow(1px 1px 0 rgba(white, 1)); */
 }
+
 a:hover {
-	font-size: 12px;
-   text-align: left;
-   color: #e74c3c;
-   text-decoration: underline;
-   @include text-shadow(1px 1px 0 rgba(white, 1));	
+	font-size: 14px;
+	text-align: left;
+	color: #e74c3c;
+	text-decoration: underline;
 }
 
 ul li {
-  cursor: pointer;
-  position: relative;
-  padding: 12px 8px 12px 40px;
-  list-style-type: none;
-  font-size: 12px;  
+	cursor: pointer;
+	position: relative;
+	padding: 1px 8px 12px 40px;
+	list-style-type: none;
+	font-size: 12px;
+	text-align: left;
+}
+
+ul li a {
+	padding-left: 2px;
 }
 
 form {
@@ -103,6 +109,21 @@ form textarea {
 	height: 126px;
 }
 
+#search-input {
+	width: 40%;
+	margin-top: -32px;
+	margin-left: 130px;
+	float: left;
+}
+
+#search-submit {
+	float: right;
+	width: 13%;
+	background: url('search.png') no-repeat no-repeat center white;
+	background-size: 30px;
+	margin-top: -32px;
+}
+
 .half {
 	float: left;
 	width: 48%;
@@ -140,4 +161,13 @@ form textarea {
 	max-width: 600px;
 	text-align: center;
 	margin: 20px auto;
+}
+
+.tabl {
+	margin: 20px auto;
+	padding-top: 40px;
+}
+
+.home {
+	float: left;
 }

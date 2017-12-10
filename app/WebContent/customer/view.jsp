@@ -10,30 +10,22 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="main">
-	<h2>${cust.name}</h2>
-	<h2>${cust.email}</h2>
-	<h2>${cust.phone}</h2>
-	
-	</br>
-	<h2>${cust.address.city} ${cust.address.pincode} </h2>
-	<h2>${cust.address.state}, ${cust.address.country} </h2>
-	<form class="cf" action="../add_customer" method="post">
+	<div class="home">
+		<a href="index.jsp">Home</a>
+	</div>
+	<h1>Customer Details</h1>
+	<div class="main">
 		<div class="half left cf">
-			<input type="text" id="input-name" placeholder="Name" name="name"> 
-			<input type="email" id="input-email" placeholder="Email address" name="email"> 
-			<input type="text" id="input-phone" placeholder="Phone" name="phone">
+			<h2>${cust.name}</h2>
+			<h2>${cust.email}</h2>
+			<h2>${cust.phone}</h2>
+			</br>
+			<h2>${cust.address.city}${cust.address.pincode}</h2>
+			<h2>${cust.address.state},${cust.address.country}</h2>
 		</div>
 		<div class="half right cf">
-			<h2>Address</h2>
-			<!--textarea name="message" type="text" id="input-message" placeholder="Message"></textarea-->
-			<input type="text" id="input-city" placeholder="City" name="city"> 
-			<input type="text" id="input-state" placeholder="State" name="state"> 
-			<input type="text" id="input-country" placeholder="Country" name="country"> 
-			<input type="text" id="input-pincode" placeholder="Pincode" name="pincode">
+			<a href="update_customer?cust_id=${cust.id}">Modify</a>
 		</div>
-		<input type="submit" value="Submit" id="input-submit">
-	</form>
 	</div>
 </body>
 </html>

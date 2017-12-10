@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+	<div class="home">
+		<a href="../index.jsp">Home</a>
+	</div>
 	<h1>Add New Customer</h1>
 	<form class="cf" action="../add_customer" method="post">
 		<div class="half left cf">
