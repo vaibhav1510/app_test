@@ -20,8 +20,8 @@
 			<h2>${cust.email}</h2>
 			<h2>${cust.phone}</h2>
 			</br>
-			<h2>${cust.address.city}${cust.address.pincode}</h2>
-			<h2>${cust.address.state},${cust.address.country}</h2>
+			<h2>${cust.address.city}&nbsp;${cust.address.pincode}</h2>
+			<h2>${cust.address.state},&nbsp;${cust.address.country}</h2>
 		</div>
 		<div class="half right cf">
 			<a href="update_customer?cust_id=${cust.id}">Modify</a>
